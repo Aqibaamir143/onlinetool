@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MultiTools - Free online tools including Image Compressor and more. Optimize your workflow with our easy-to-use utilities.">
+    <meta name="keywords" content="online tools, image compressor, free utilities, multitools, web tools">
+    <meta name="robots" content="index, follow">
+    <title>MultiTools - Free Online Utilities for Everyone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f7fa;
+            font-family: Arial, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #007bff, #00c4cc);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .tools-grid {
+            margin-top: 50px;
+        }
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        .tool-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .tool-card i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .tool-card .btn {
+            margin-top: auto;
+        }
+        .category-chips {
+            margin: 20px 0;
+        }
+        .category-chip {
+            cursor: pointer;
+            margin: 5px;
+        }
+        .category-chip.active {
+            background: #007bff !important;
+            color: white !important;
+        }
+        .ad-section {
+            margin: 40px 0;
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <h1>Welcome to MultiTools</h1>
+            <p>Your one-stop destination for free, easy-to-use online tools.</p>
+            <div class="search-bar">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search tools...">
+            </div>
+        </div>
+    </div>
+
+    <div class="container tools-grid">
+        <div class="category-chips text-center">
+            <span class="badge bg-secondary category-chip" data-category="all">All</span>
+            <span class="badge bg-secondary category-chip" data-category="image">Image</span>
+            <span class="badge bg-secondary category-chip" data-category="utility">Utility</span>
+            <span class="badge bg-secondary category-chip" data-category="future">Coming Soon</span>
+        </div>
+
+        <div class="row gy-4" id="toolsContainer">
+            <div class="col-md-4 tool-item" data-categories="image">
+                <div class="tool-card">
+                    <i class="fas fa-image"></i>
+                    <h3>Image Compressor</h3>
+                    <p>Reduce image file sizes while maintaining quality.</p>
+                    <a href="image-compressor.html" class="btn btn-primary">Try Now</a>
+                </div>
+            </div>
+            <div class="col-md-4 tool-item" data-categories="utility future">
+                <div class="tool-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>PDF Converter</h3>
+                    <p>Convert files to PDF (Coming Soon).</p>
+                    <a href="#" class="btn btn-secondary disabled">Coming Soon</a>
+                </div>
+            </div>
+            <div class="col-md-4 tool-item" data-categories="image future">
+                <div class="tool-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>Image Editor</h3>
+                    <p>Basic image editing tools (Coming Soon).</p>
+                    <a href="#" class="btn btn-secondary disabled">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-section">
+            <h5>Advertisement</h5>
+            <div style="height: 100px; background: #ccc; line-height: 100px;">
+                <!-- Replace with actual ad code -->
+                Responsive Ad Placeholder (e.g., 728x90 or 300x250)
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 MultiTools. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MultiTools",
+        "url": "https://your-multitools-domain.com",
+        "description": "Free online tools including Image Compressor and more.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://your-multitools-domain.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const toolsContainer = document.getElementById('toolsContainer');
+        const toolItems = toolsContainer.getElementsByClassName('tool-item');
+        const categoryChips = document.querySelectorAll('.category-chip');
+        let activeCategory = 'all';
+
+        // Search Functionality
+        searchInput.addEventListener('input', filterTools);
+        
+        // Category Filtering
+        categoryChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                categoryChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activeCategory = chip.dataset.category;
+                filterTools();
+            });
+        });
+        // Set 'All' as default active
+        document.querySelector('.category-chip[data-category="all"]').classList.add('active');
+
+        function filterTools() {
+            const searchText = searchInput.value.toLowerCase();
+
+            Array.from(toolItems).forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                const categories = item.dataset.categories.split(' ');
+
+                const matchesSearch = title.includes(searchText) || description.includes(searchText);
+                const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+
+                item.style.display = (matchesSearch && matchesCategory) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
